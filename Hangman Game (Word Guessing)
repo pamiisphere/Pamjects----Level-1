@@ -1,0 +1,48 @@
+import random
+
+name = input("Enter your name: ")
+print("Let's go!", name, "\n")
+
+print("The guessing word today is about computer! \n\n")
+print("Have Fun & Good Luck :) \n\n")
+
+words = ['coding', 'computer', 'science', 'programming',
+         'python', 'array', 'index', 'condition',
+         'while', 'elif', 'true', 'false']
+word = random.choice(words)
+
+guesses = ''
+turns = 12
+print("You have 12 turns limit.\n")
+
+while turns > 0:
+    failed = 0 # to calculate the number of character that user doesn't correctly guess
+    
+    for char in word:
+        if char in guesses:
+            print(char, end=" ") # end=" " use when you want to make a space in one line between each character
+        else:
+            print("_", end=" ") # to print the underline spaces for each character in the guessed word
+            failed += 1
+    print("\n")
+    if failed == 0:
+        print("Congratulations!, You Win")
+        print("The word is: ", word)
+        break
+    guess = input("Guess a character: ")
+    
+    # Prevent repeated guesses
+    if guess in guesses:
+        print("You've already guessed that character. Try again!")
+        continue
+    
+    guesses += guess
+    
+    if guess not in word:
+        turns -= 1
+        print("Wrong!")
+        print("You have", turns, "more guesses")
+        
+        if turns == 0:
+            print("Your turn is Over. You lose!!")
+            print("The correct word is: ", word)
