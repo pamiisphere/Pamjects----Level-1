@@ -1,0 +1,44 @@
+import random
+
+print("Hello! Welcome to the game.\nYiou have to read BOT's mind to win the game")
+player = input("Enter your name: ")
+print("Great! Good Luck", player,";)\n")
+
+print("Bot already set the 2 digit number.\n")
+num = random.randint(0, 99)
+num = str(num) # to convert random number to string for matching with each digit in guess_num
+
+print(player ,"please guess the number\n")
+guess_num = input("Guess the 2 digit number: ")
+guesses = 0
+
+if not guess_num.isdigit() or len(guess_num) != 2:
+    print("Invalid input!\n")
+
+if guess_num == num:
+    print("Congratulations! You win in 1 try. You're a Mastermind!\n")
+else:
+    while True:
+        guesses += 1
+        correct_digit_count = 0 
+        correct = ["_"]*2  # to show the digit positions
+        
+        # loop the digit to fing the match
+        for i in range(0,2):
+            if guess_num[i] == num[i]: # if equals just ONE digit
+                correct[i] = guess_num[i] # to replace the _ with the correct digit
+                correct_digit_count += 1 # to increase the correct digit that is guessed
+            else:
+                continue
+        
+        if correct_digit_count == 2:
+            result = int("_".join(correct))   # to convert the correct _ list into number (From ['2', '5' to 25]) using "_".join() to joint between the symbol space to adjacent
+            print("Congratulations!\nThe 2 digit number is", result, "\nYou win in", guesses,"tries. You're a Mastermind :)\n")
+            break
+        elif correct_digit_count == 0:
+            print("Keep up! You still got chance even you got ZERO digit correct now :(\n")
+            guess_num = input("Enter your next choice of 2 digit numbers: ")
+        else:
+            print("Now you got", correct_digit_count, "digit correct now!\n")
+            guess_num = input("Enter your next choice of 2 digit numbers: ")
+            
