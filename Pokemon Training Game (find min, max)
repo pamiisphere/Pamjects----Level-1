@@ -1,0 +1,15 @@
+powers = [1, 3, 2, 1, 0.5, 10, 14, -22]
+
+minimum = 0    # the number will change when running loop, and then find the minimum and maximum number
+maximum = 0
+
+print("\nThe loop will run at the beginning of the power list!\n")
+for power in powers:    # the loop will run since the first string untill find the maximum in each position
+    if minimum == 0 and maximum == 0:   # ONLY for the first position because the minimum and maximum are still 0(zero)
+        minimum = powers[0]
+        maximum = powers[0]
+        print("Power Charge: ",minimum, "(min),", maximum, "(max)\n")
+    else:
+        minimum = min(minimum, power)   # use function min(x, y) in Python to find the minimum number
+        maximum = max(maximum, power)   # use function max(x, y) in Python to find the maximum number
+        print("Power Charge: ",minimum, "(min),", maximum, "(max)\n")
