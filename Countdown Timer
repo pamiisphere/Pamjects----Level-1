@@ -1,0 +1,16 @@
+import time
+
+
+def countdown(t):
+    while t != 0:
+        mins, secs = divmod(t, 60) # function divmod(5,2) = (5/2=2, R=1). Then t(secs)/60(secs) = x(mins), y(secs for remainders) e.g. divmod(120, 60) = (2(mins), 0(secs))
+        timer = '{:02d}:{:02d}'.format(mins, secs)  # {:02d} is to give a space, .format(mins, secs) is to substitutes the placeholders '{:02d}' with the values of 'mins' and 'secs'
+        print(timer, end="\r")  # "\r" is used when moving the cursor to the beginning of the text only in one line
+        time.sleep(1)
+        t -= 1
+    print("Time's UP!")
+
+
+length = input("Enter the countdown time in seconds (secs): ")  # the input now is string, so we need to convert it to integer
+t = int(length)
+countdown(t)
